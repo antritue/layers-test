@@ -1,0 +1,22 @@
+service: lambda-service
+package:
+  patterns:
+    - "!node_modules/**"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: ap-southeast-1
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
+    environment:
+      NODE_PATH: "./:/opt/node_modules"
+    layers:
+      - arn:aws:lambda:ap-southeast-1:824918428471:layer:MomentLayer:1

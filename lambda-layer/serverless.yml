@@ -1,0 +1,12 @@
+service: lambda-layer
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: ap-southeast-1
+
+layers:
+  MomentLayer:
+    path: moment_layer
+    description: "Moment Dependencies"
