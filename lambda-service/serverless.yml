@@ -1,22 +1,72 @@
 service: lambda-service
+
 package:
   patterns:
     - "!node_modules/**"
+
+custom:
+  tableName: "device-table-2"
 
 provider:
   name: aws
   runtime: nodejs18.x
   stage: dev
   region: ap-southeast-1
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "Fn::GetAtt": [myTable, Arn]
 
 functions:
-  hello:
-    handler: handler.hello
+  create:
+    handler: src/functions/create.create
+    name: service-create-device
     events:
-      - http:
-          method: get
-          path: hello
+      - httpApi:
+          path: /api/devices
+          method: post
     environment:
       NODE_PATH: "./:/opt/node_modules"
     layers:
-      - arn:aws:lambda:ap-southeast-1:824918428471:layer:MomentLayer:1
+      - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:2
+  get:
+    handler: src/functions/get.get
+    name: service-get-device
+    events:
+      - httpApi:
+          path: /api/devices/{id}
+          method: get
+  list:
+    handler: src/functions/list.list
+    name: service-list-device
+    events:
+      - httpApi:
+          path: /api/devices
+          method: get
+resources:
+  Resources:
+    myTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
