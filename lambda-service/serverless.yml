@@ -1,11 +1,16 @@
 service: lambda-service
 
-package:
-  patterns:
-    - "!node_modules/**"
+# package:
+#   patterns:
+#     - "!node_modules/**"
 
 custom:
   tableName: "device-table-2"
+
+layers:
+  test:
+    path: layers/test
+    description: "Test Layers within service"
 
 provider:
   name: aws
@@ -16,7 +21,8 @@ provider:
     TABLE_NAME: ${self:custom.tableName}
     NODE_PATH: "./:/opt/node_modules"
   layers:
-    - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
+    # - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
+    - !Ref TestLambdaLayer
   iam:
     role:
       statements:
