@@ -14,6 +14,9 @@ provider:
   region: ap-southeast-1
   environment:
     TABLE_NAME: ${self:custom.tableName}
+    NODE_PATH: "./:/opt/node_modules"
+  layers:
+    - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:2
   iam:
     role:
       statements:
@@ -37,10 +40,6 @@ functions:
       - httpApi:
           path: /api/devices
           method: post
-    environment:
-      NODE_PATH: "./:/opt/node_modules"
-    layers:
-      - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:2
   get:
     handler: src/functions/get.get
     name: service-get-device
