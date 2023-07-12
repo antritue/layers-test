@@ -16,7 +16,7 @@ provider:
     TABLE_NAME: ${self:custom.tableName}
     NODE_PATH: "./:/opt/node_modules"
   layers:
-    - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:2
+    - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
   iam:
     role:
       statements:
