@@ -11,6 +11,9 @@ layers:
   test:
     path: layers/test
     description: "Test Layers within service"
+  utils:
+    path: layers/utils
+    description: "Test shared functions"
 
 provider:
   name: aws
@@ -23,6 +26,7 @@ provider:
   layers:
     # - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
     - !Ref TestLambdaLayer
+    - !Ref UtilsLambdaLayer
   iam:
     role:
       statements:
