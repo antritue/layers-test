@@ -8,12 +8,12 @@ custom:
   tableName: "device-table-2"
 
 layers:
-  test:
-    path: layers/test
-    description: "Test Layers within service"
-  # utils:
-  #   path: layers/utils
-  #   description: "Test shared functions"
+  libraries:
+    path: layers/libraries
+    description: "Layers within service"
+  utilities:
+    path: layers/utilities
+    description: "Shared functions within service"
 
 provider:
   name: aws
@@ -25,8 +25,8 @@ provider:
     NODE_PATH: "./:/opt/node_modules"
   layers:
     # - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
-    - !Ref TestLambdaLayer
-    # - !Ref UtilsLambdaLayer
+    - !Ref LibrariesLambdaLayer
+    - !Ref UtilitiesLambdaLayer
   iam:
     role:
       statements:

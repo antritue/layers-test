@@ -4,3 +4,6 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
+# Do not ignore node_modules folder in layers/utilities
+!layers/utilities/node_modules/

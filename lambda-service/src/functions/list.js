@@ -1,7 +1,7 @@
 const { ScanCommand } = require("@aws-sdk/client-dynamodb");
 const { unmarshall } = require("@aws-sdk/util-dynamodb");
 
-const db = require("../utils/db");
+const db = require("db");
 
 module.exports.list = async (event) => {
   const response = { statusCode: 200 };
