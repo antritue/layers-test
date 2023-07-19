@@ -2,8 +2,8 @@ const crypto = require("crypto");
 const { PutItemCommand } = require("@aws-sdk/client-dynamodb");
 const { marshall } = require("@aws-sdk/util-dynamodb");
 
-const db = require("../../layers/utils/db");
-const validateDevice = require("../../layers/utils/validator");
+const db = require("../utils/db");
+const validateDevice = require("../utils/validator");
 
 module.exports.create = async (event) => {
   const response = { statusCode: 201 };

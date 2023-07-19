@@ -1,7 +1,7 @@
 const { GetItemCommand } = require("@aws-sdk/client-dynamodb");
 const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
 
-const db = require("../../layers/utils/db");
+const db = require("../utils/db");
 
 module.exports.get = async (event) => {
   const response = { statusCode: 200 };
