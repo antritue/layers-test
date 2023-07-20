@@ -8,8 +8,8 @@ custom:
   tableName: "device-table-2"
 
 layers:
-  libraries:
-    path: layers/libraries
+  dependencies:
+    path: layers/dependencies
     description: "Layers within service"
   utilities:
     path: layers/utilities
@@ -24,8 +24,9 @@ provider:
     TABLE_NAME: ${self:custom.tableName}
     NODE_PATH: "./:/opt/node_modules"
   layers:
-    # - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:5
-    - !Ref LibrariesLambdaLayer
+    # - arn:aws:lambda:ap-southeast-1:824918428471:layer:CommonLayer:7
+    # - arn:aws:lambda:ap-southeast-1:824918428471:layer:UltilitiesLayer:2
+    - !Ref DependenciesLambdaLayer
     - !Ref UtilitiesLambdaLayer
   iam:
     role:

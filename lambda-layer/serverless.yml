@@ -10,3 +10,6 @@ layers:
   CommonLayer:
     path: common-layer
     description: "Common Dependencies"
+  UltilitiesLayer:
+    path: utilities
+    description: "Reusable Function"
