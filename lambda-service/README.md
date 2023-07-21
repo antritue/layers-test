@@ -1,4 +1,4 @@
-# Layers Usage within Service
+# Lambda Layers usage within service
 
 ## Description
 
@@ -42,7 +42,7 @@ The `utilities` is a Lambda layer that provides a set of shared functions that a
 !layers/utilities/node_modules/
 ```
 
-## Define layers in serverless.yml
+### Define layers in serverless.yml
 
 In your serverless.yml file, define the layers as follows:
 
@@ -58,7 +58,7 @@ layers:
 
 This configuration will create two layers: dependencies and utilities in your service.
 
-## Reference layers in provider
+### Reference layers in provider
 
 In the provider section of your serverless.yml file, include the layers you defined:
 
@@ -80,9 +80,9 @@ To use a layer in the same service, use a CloudFormation `Ref`. The name of your
 
 - If you are using the nodejs14.x runtime, make sure to add the `NODE_PATH` environment variable in the provider section
 
-## Usage in the function
+### Usage in the function
 
-### Create a reusable function in utilities layer
+#### Create a reusable function in utilities layer
 
 Create a new file named `index.js` inside the `layers/utilities/node_modules/logging/` directory.
 
@@ -96,7 +96,7 @@ module.exports.log = () => {
 
 This will define a simple function named log in the logging module.
 
-### Use the reusable function in the Lambda function
+#### Use the reusable function in the Lambda function
 
 `src/handler.js`
 
