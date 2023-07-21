@@ -1,3 +1,19 @@
+# Layers Usage within Service
+
+## Description
+
+This repository contains AWS Lambda layers used within our service to share common dependencies and reusable functions across multiple Lambda functions.
+
+## Layers
+
+### 1. Dependencies
+
+The `dependencies` is a Lambda layer that includes common dependencies required by our Lambda functions. It helps us manage and maintain consistent versions of libraries and packages across all functions in the service.
+
+### 2. Utilities
+
+The `utilities` is a Lambda layer that provides a set of shared functions that are frequently used across our Lambda functions. These utility functions help improve code maintainability and reduce duplication.
+
 ## Usage
 
 ### Folder structure
