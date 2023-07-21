@@ -36,7 +36,7 @@ The `utilities` is a Lambda layer that provides a set of shared functions that a
 
 - `dependencies`: install npm packages inside **layers/dependencies/** in order to use shared dependencies and libraries
 - `utilities`: put all functions inside **layers/utilities/node_modules/** with function name as the name of the folder
-- `.gitignore`: add this line to `.gitignore` to not ignore the code in `utilities` when commiting and pushing code to GitHub
+- `.gitignore`: add this line to `.gitignore` to prevent code loss in `utilities` when commiting and pushing code to GitHub
 
 ```
 !layers/utilities/node_modules/
@@ -50,7 +50,7 @@ In your serverless.yml file, define the layers as follows:
 layers:
   dependencies:
     path: layers/dependencies
-    description: "Layers within service"
+    description: "Shared dependencies within service"
   utilities:
     path: layers/utilities
     description: "Shared functions within service"
